@@ -91,7 +91,7 @@ class RedisListLengthCheck < Sensu::Plugin::Check::CLI
     else
       ok "Redis sorted set #{config[:key]} length is below thresholds"
     end
-  rescue
-    unknown "Could not connect to Redis server on #{config[:host]}:#{config[:port]}"
+  rescue => e
+    unknown e.message
   end
 end
